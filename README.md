@@ -161,7 +161,8 @@ docker-compose.gpu.yml   NVIDIA GPU override configuration
 
 - **Git**
 - **Python 3.9+** (used for asset downloader script)
-- **Docker Engine & Docker Compose Plugin** (or Docker Desktop)
+- **Docker Engine & Docker Compose Plugin** (or Docker Desktop) — not needed
+  for the native quick start below
 - Free disk space: **12 GB minimum** (20 GB recommended for build cache)
 
 ---
@@ -210,6 +211,41 @@ docker-compose.gpu.yml   NVIDIA GPU override configuration
    docker compose exec backend python -c \
      "import torch; print(torch.__version__); print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
    ```
+
+---
+
+## Quick Start: Native (no Docker)
+
+Runs the backend and frontend directly on the host. Requires **Python 3.10+**
+and **Node.js 20+**.
+
+1. **Start the backend** (creates `backend/.venv`, installs dependencies,
+   downloads runtime assets, then serves FastAPI on port 8000):
+   ```bash
+   ./scripts/run_native.sh backend          # CPU-only PyTorch wheels
+   ./scripts/run_native.sh backend --gpu    # CUDA 12.8 wheels (NVIDIA GPU)
+   ```
+
+2. **Start the frontend** in a second terminal (React dev server on port 3000):
+   ```bash
+   ./scripts/run_native.sh frontend
+   ```
+
+3. **Access web interfaces**:
+   - Dashboard: <http://localhost:3000>
+   - Swagger API docs: <http://localhost:8000/docs>
+
+Notes:
+
+- `backend/requirements-cpu.txt` pins `torch==2.7.1+cpu`, avoiding the
+  multi-gigabyte CUDA wheel download on machines without an NVIDIA GPU.
+- The frontend defaults to `http://localhost:8000` as the API base, and the
+  backend's default CORS allowlist already includes `http://localhost:3000`,
+  so no extra environment variables are needed. Override with
+  `REACT_APP_API_URL` and `CORS_ORIGINS` if you change ports.
+- EasyOCR downloads its recognition models to `~/.EasyOCR` on first run.
+- On a minimal Linux install, OpenCV may require system libraries:
+  `sudo apt-get install libgl1 libglib2.0-0`.
 
 ---
 

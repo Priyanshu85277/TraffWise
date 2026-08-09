@@ -23,3 +23,9 @@ backend/api/data/
 .idea/
 .vscode/
 .DS_Store
+
+# Local training dataset archives
+*.rar
+datasets/
+.venv-train/
+runs/

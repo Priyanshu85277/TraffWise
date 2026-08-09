@@ -1,0 +1,18 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+cloudinary==1.42.2
+deep-sort-realtime==1.3.2
+easyocr==1.7.2
+fastapi==0.115.12
+lap==0.5.13
+numpy==1.26.4
+opencv-python-headless==4.10.0.84
+pillow==10.2.0
+python-dotenv==1.0.1
+python-multipart==0.0.20
+PyYAML==6.0.2
+shapely==2.0.6
+torch==2.7.1+cpu
+torchvision==0.22.1+cpu
+ultralytics==8.4.116
+uvicorn[standard]==0.34.0
