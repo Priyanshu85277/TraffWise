@@ -29,3 +29,10 @@ backend/api/data/
 datasets/
 .venv-train/
 runs/
+
+# Local training output archives and base checkpoints
+/results.zip
+/yolo26n.pt
+
+# Windows/WSL zone metadata
+*:Zone.Identifier

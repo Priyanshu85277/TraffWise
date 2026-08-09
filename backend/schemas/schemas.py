@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 
 class ModelRequest(BaseModel):
-    model_type: Literal["yolo11", "rtdetrv2", "faster_rcnn"]
+    model_type: Literal["yolo11", "yolo26", "rtdetrv2", "faster_rcnn"]
 
 
 class CameraRequest(BaseModel):
@@ -12,7 +12,7 @@ class CameraRequest(BaseModel):
 
 class CaptureRequest(BaseModel):
     camera_id: str
-    model_type: Literal["yolo11", "rtdetrv2", "faster_rcnn"]
+    model_type: Literal["yolo11", "yolo26", "rtdetrv2", "faster_rcnn"]
 
 
 class Violation(BaseModel):
