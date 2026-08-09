@@ -7,6 +7,16 @@ labels:
 frame_skipper:
   target_fps: 60
 
+tracker:
+  type: bytetrack        # bytetrack | deepsort
+  track_high_thresh: 0.25
+  track_low_thresh: 0.1
+  new_track_thresh: 0.25
+  track_buffer: 30       # frames a lost track is kept before removal
+  match_thresh: 0.8
+  fuse_score: true
+  frame_rate: 30
+
 models:
   yolo11:
     path: api/data/models/one-stage/yolo11-noaugment.pt

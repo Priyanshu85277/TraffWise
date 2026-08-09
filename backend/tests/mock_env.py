@@ -28,6 +28,7 @@ def setup_mocks():
         "torchvision.models.detection.rpn", "PIL", "PIL.Image",
         "ultralytics", "ultralytics.nn", "ultralytics.nn.modules",
         "ultralytics.nn.modules.head", "ultralytics.nn.modules.transformer",
+        "ultralytics.trackers", "ultralytics.trackers.byte_tracker",
         "easyocr", "cloudinary", "cloudinary.uploader", "cloudinary.api",
         "scipy", "scipy.spatial", "scipy.spatial.distance", "scipy.optimize", "yaml",
         "deep_sort_realtime", "deep_sort_realtime.deepsort_tracker", "dotenv"

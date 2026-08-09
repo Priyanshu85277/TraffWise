@@ -9,7 +9,7 @@ from typing import Literal
 from concurrent.futures import ThreadPoolExecutor
 
 from .adaptive_frame_skipper import AdaptiveFrameSkipper
-from ..engines import VehicleDetector, LicensePlateProcessor, DeepSORT, RedLightViolationDetector, \
+from ..engines import VehicleDetector, LicensePlateProcessor, create_tracker, RedLightViolationDetector, \
     SpeedEstimator, WrongLaneDrivingDetector, RoadManager
 from ..process import AsyncCloudinaryUploader, ViolationManager
 
@@ -63,7 +63,7 @@ class Controller:
     def init_components(self):
         self.vehicle_detector = VehicleDetector(self.config)
         self.lp_processor = LicensePlateProcessor(self.config)
-        self.tracker = DeepSORT(self.config)
+        self.tracker = create_tracker(self.config)
         self.road_manager = RoadManager(self.config, self.camera_name)
         self.rlv_detector = RedLightViolationDetector(
             self.road_manager, self.uploader)
@@ -453,7 +453,7 @@ class Controller:
         print("Reinitializing components for new camera...")
         self.violation_manager.start_session()
         self.frame_skipper = AdaptiveFrameSkipper(self.config["frame_skipper"])
-        self.tracker = DeepSORT(self.config)
+        self.tracker = create_tracker(self.config)
         self.road_manager = RoadManager(self.config, self.camera_name)
         self.rlv_detector = RedLightViolationDetector(
             self.road_manager, self.uploader)
