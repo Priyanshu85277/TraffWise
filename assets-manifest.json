@@ -1,6 +1,6 @@
 {
   "repo_id": "khoa-na/traffwise-assets",
-  "revision": "86e562678bbc64fab61abed2d24fcfab33429fa7",
+  "revision": "8226f02c6820e8654cbadaff02196698e1988898",
   "files": [
     {"path": "models/lp/LP_detection.pt", "size": 5423251, "sha256": "e120c0ed2084eb7000711e018e22767674d77fa25d5f5b73a6680e75a0e060a7"},
     {"path": "models/one-stage/yolo11-noaugment.pt", "size": 5487699, "sha256": "13fbf169eb70379a1858f6638cd8e58068965dc3f085f33f0d207735efef905a"},
