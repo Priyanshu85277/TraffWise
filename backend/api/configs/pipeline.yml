@@ -6,6 +6,7 @@ labels:
 
 frame_skipper:
   target_fps: 60
+  skip_rate: auto        # adaptive: drop just enough frames to keep real-time playback
 
 tracker:
   type: bytetrack        # bytetrack | deepsort

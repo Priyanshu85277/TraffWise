@@ -257,6 +257,12 @@ class Controller:
         try:
             self.init_process_video()
             video_fps = int(self.cap.get(cv2.CAP_PROP_FPS)) or 30
+            # Pace playback to the source clock: every frame read (skipped or
+            # not) advances the deadline by one source-frame interval, so file
+            # playback runs at real time like a live camera and the measured
+            # FPS fed to the speed estimator stays consistent with real motion.
+            frame_interval = 1.0 / video_fps
+            next_frame_due = time.time()
 
             PAUSED_FPS = 5
             paused_sleep_time = 1.0 / PAUSED_FPS
@@ -321,7 +327,15 @@ class Controller:
 
                 self.frame_origin = frame.copy()
 
+                # Advance the source-time deadline; clamp so a stall (pause,
+                # camera switch) does not trigger a fast-forward catch-up burst.
+                next_frame_due = max(next_frame_due + frame_interval,
+                                     time.time() - frame_interval)
+
                 if self.frame_skipper.is_skipable():
+                    delay = next_frame_due - time.time()
+                    if delay > 0:
+                        time.sleep(delay)
                     continue
 
                 try:
@@ -364,6 +378,10 @@ class Controller:
                     with self._frame_condition:
                         self._latest_jpeg = jpeg.tobytes()
                         self._frame_condition.notify_all()
+
+                    delay = next_frame_due - time.time()
+                    if delay > 0:
+                        time.sleep(delay)
 
                 except Exception as e:
                     print(f"Error processing frame in producer loop: {e}")
