@@ -12,6 +12,10 @@ models:
     path: api/data/models/one-stage/yolo11-noaugment.pt
     conf_threshold: 0.5
     iou_threshold: 0.5
+  yolo26:
+    path: api/data/models/one-stage/yolo26n.pt
+    conf_threshold: 0.5
+    iou_threshold: 0.5
   rtdetrv2:
     path: api/data/models/transformer-based/rtdetrv2-nano-resnet.pt
     conf_threshold: 0.5

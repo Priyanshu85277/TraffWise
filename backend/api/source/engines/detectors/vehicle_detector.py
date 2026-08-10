@@ -20,7 +20,7 @@ transformer.MSDeformAttnV2 = transformer.MSDeformAttn
 class VehicleDetector:
     def __init__(self,
                  config,
-                 model_type: Literal["yolo11", "rtdetrv2", "faster_rcnn"] = "yolo11"):
+                 model_type: Literal["yolo11", "yolo26", "rtdetrv2", "faster_rcnn"] = "yolo11"):
         self.config = config
         self.model_type = model_type
         self.device = torch.device(
@@ -38,7 +38,7 @@ class VehicleDetector:
         self.conf_threshold = self.config["models"][self.model_type].get(
             "conf_threshold", 0.5)
 
-        if self.model_type == "yolo11":
+        if self.model_type in ["yolo11", "yolo26"]:
             self.model = YOLO(self.config["models"][self.model_type]["path"])
         elif self.model_type == "rtdetrv2":
             self.model = RTDETR(self.config["models"][self.model_type]["path"])
@@ -72,7 +72,7 @@ class VehicleDetector:
     def postprocess(self, predictions):
         # Postprocess
 
-        if self.model_type in ["yolo11", "rtdetrv2"]:
+        if self.model_type in ["yolo11", "yolo26", "rtdetrv2"]:
             boxes = predictions[0].boxes.xyxy.cpu().numpy().astype(int)
             confs = predictions[0].boxes.conf.cpu().numpy()
             labels = predictions[0].boxes.cls.cpu().numpy().astype(int)
@@ -106,7 +106,7 @@ class VehicleDetector:
             return self._detect(image)
 
     def _detect(self, image):
-        if self.model_type in ["yolo11", "rtdetrv2"]:
+        if self.model_type in ["yolo11", "yolo26", "rtdetrv2"]:
             predictions = self.model.predict(
                 image,
                 verbose=False,
@@ -125,7 +125,7 @@ class VehicleDetector:
 
         return res
 
-    def switch_model(self, model_type: Literal["yolo11", "rtdetrv2", "faster_rcnn"]):
+    def switch_model(self, model_type: Literal["yolo11", "yolo26", "rtdetrv2", "faster_rcnn"]):
         with self._model_lock:
             if model_type == self.model_type:
                 return

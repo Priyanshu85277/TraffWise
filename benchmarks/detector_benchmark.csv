@@ -1,0 +1,6 @@
+timestamp,device,hardware,torch,ultralytics,video,model,frames,mean_ms,median_ms,p95_ms,fps,avg_detections
+2026-08-09T14:04:56Z,cuda,NVIDIA GeForce RTX 5060,2.13.0+cu130,8.4.116,cam_1.mp4,yolo11,300,10.01,8.84,18.23,99.9,6.8
+2026-08-09T14:04:56Z,cuda,NVIDIA GeForce RTX 5060,2.13.0+cu130,8.4.116,cam_1.mp4,yolo26,300,10.94,9.18,20.6,91.4,6.5
+2026-08-09T14:04:56Z,cuda,NVIDIA GeForce RTX 5060,2.13.0+cu130,8.4.116,cam_1.mp4,rtdetrv2,300,13.24,11.36,22.09,75.5,1.6
+2026-08-09T14:05:13Z,cpu,cpu,2.13.0+cu130,8.4.116,cam_1.mp4,yolo11,100,28.51,27.95,32.41,35.1,7.5
+2026-08-09T14:05:13Z,cpu,cpu,2.13.0+cu130,8.4.116,cam_1.mp4,yolo26,100,29.31,28.99,35.6,34.1,6.4

@@ -412,7 +412,7 @@ class Controller:
         return self.is_paused
 
     def switch_model(self,
-                     model_type: Literal["yolo11", "rtdetrv2", "faster_rcnn"]):
+                     model_type: Literal["yolo11", "yolo26", "rtdetrv2", "faster_rcnn"]):
         """Switch model type"""
         self.new_model = model_type
         self.switch_model_flag = True

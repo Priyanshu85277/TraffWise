@@ -168,6 +168,7 @@ export default function ControlSection({ togglePanel, activePanel, cameraId }) {
         onChange={handleModelChange}
       >
         <option value="yolo11">YOLO11</option>
+        <option value="yolo26">YOLO26n</option>
         <option value="rtdetrv2">RTDETRv2</option>
         <option value="faster_rcnn">Faster-RCNN</option>
       </select>
