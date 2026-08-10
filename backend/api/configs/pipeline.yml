@@ -24,7 +24,7 @@ models:
     conf_threshold: 0.5
     iou_threshold: 0.5
   yolo26:
-    path: api/data/models/one-stage/yolo26n.pt
+    path: api/data/models/one-stage/yolo26n.onnx   # end-to-end ONNX export (NMS-free), fastest on CPU
     conf_threshold: 0.5
     iou_threshold: 0.5
   rtdetrv2:
