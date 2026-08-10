@@ -39,7 +39,9 @@ class VehicleDetector:
             "conf_threshold", 0.5)
 
         if self.model_type in ["yolo11", "yolo26"]:
-            self.model = YOLO(self.config["models"][self.model_type]["path"])
+            # task="detect" covers ONNX checkpoints, which carry no task metadata
+            self.model = YOLO(self.config["models"][self.model_type]["path"],
+                              task="detect")
         elif self.model_type == "rtdetrv2":
             self.model = RTDETR(self.config["models"][self.model_type]["path"])
         elif self.model_type == "faster_rcnn":

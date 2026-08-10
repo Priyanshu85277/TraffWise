@@ -6,6 +6,7 @@ easyocr==1.7.2
 fastapi==0.115.12
 lap==0.5.13
 numpy==1.26.4
+onnxruntime==1.28.0
 opencv-python-headless==4.10.0.84
 pillow==10.2.0
 python-dotenv==1.0.1
