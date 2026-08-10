@@ -1,8 +1,10 @@
 from deep_sort_realtime.deepsort_tracker import DeepSort
 import torch
 
+from .base import BaseTracker
 
-class DeepSORT:
+
+class DeepSORT(BaseTracker):
     def __init__(self,
                  config,
 

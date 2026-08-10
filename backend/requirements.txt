@@ -4,6 +4,7 @@ cloudinary==1.42.2
 deep-sort-realtime==1.3.2
 easyocr==1.7.2
 fastapi==0.115.12
+lap==0.5.13
 numpy==1.26.4
 opencv-python-headless==4.10.0.84
 pillow==10.2.0
